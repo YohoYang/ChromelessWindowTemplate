@@ -1,0 +1,94 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:ChromelessWindowTemplate.Resources">
+    <Style x:Key="Xbutton" TargetType="Button" >
+        <Setter Property="Foreground" Value="White"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Viewbox Stretch="Uniform">
+                        <Canvas x:Name="canvas" Width="34" Height="26" Background="Transparent">
+                            <Path Width="10" Height="8" Canvas.Left="12" Canvas.Top="9" Stretch="Fill" Fill="#FFFFFFFF" Data="F1 M 9.56133,0L 6.66667,3.22272L 3.772,0L 0.0146667,0L 0,0.0253296L 4.76933,5.33472L 0,10.6414L 0.0146667,10.6667L 3.772,10.6667L 6.66667,7.44403L 9.56133,10.6667L 13.3187,10.6667L 13.3333,10.6414L 8.564,5.33472L 13.3333,0.0253296L 13.3187,0L 9.56133,0 Z "/>
+                        </Canvas>
+                    </Viewbox>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background" Value="#7FFF0000" TargetName="canvas"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="Kbutton" TargetType="Button" >
+        <Setter Property="Foreground" Value="White"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Viewbox Stretch="Uniform">
+                        <Canvas x:Name="canvas" Width="34" Height="26" Background="Transparent">
+                            <Path Width="9" Height="9" Canvas.Left="13" Canvas.Top="8" Stretch="Fill" Fill="#FFFFFFFF" Data="F1 M 8.18572e-010,0L 8.18572e-010,3.26538L 8.18572e-010,3.54535L 8.18572e-010,9.4707L 8.18572e-010,10.6667L 1.18267,10.6667L 9.492,10.6667L 10.6653,10.6667L 10.6653,9.4707L 10.6653,3.54535L 10.6653,3.14136L 10.6653,0M 1.18267,3.54535L 9.492,3.54535L 9.492,9.4707L 1.18267,9.4707L 1.18267,3.54535 Z "/>
+                        </Canvas>
+                    </Viewbox>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background" Value="#7F979797" TargetName="canvas"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="K_Bbutton" TargetType="Button" >
+        <Setter Property="Foreground" Value="White"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Viewbox Stretch="Uniform">
+                        <Canvas x:Name="canvas" Width="34" Height="26" Background="Transparent">
+                            <Path Width="10" Height="10" Canvas.Left="12" Canvas.Top="8" Stretch="Fill" Fill="#FFFFFFFF" Data="F1 M 4,0L 4,2.67169L 4.00133,2.67169L 4.00133,3.98224L 0.00133333,3.98224L 0.00133333,6.65393L -1.49782e-011,6.65393L -1.49782e-011,13.3333L 1.33333,13.3333L 1.33333,6.65393L 8.00133,6.65393L 8.00133,11.9961L 1.33467,11.9961L 1.33467,13.332L 8.00133,13.332L 8.00133,13.3333L 9.33467,13.3333L 9.33467,9.32172L 12.668,9.32172L 13.3267,9.32172L 13.3267,2.67169L 13.3333,2.67169L 13.3333,0M 5.33467,2.67169L 11.992,2.67169L 11.992,7.98584L 9.33467,7.98584L 9.33467,6.65393L 9.33467,3.98224L 5.33467,3.98224L 5.33467,2.67169 Z "/>
+                        </Canvas>
+                    </Viewbox>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background" Value="#7F979797" TargetName="canvas"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="Sbutton" TargetType="Button" >
+        <Setter Property="Foreground" Value="White"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Viewbox Stretch="Uniform">
+                        <Canvas x:Name="canvas" Width="34" Height="26" Background="Transparent">
+                            <Rectangle Width="9" Height="3" Canvas.Left="13" Canvas.Top="14" Stretch="Fill" Fill="#FFFFFFFF"/>
+                        </Canvas>
+                    </Viewbox>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Background" Value="#7F979797" TargetName="canvas"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--以上为无边框窗口按钮-->
+    <DrawingBrush x:Key="LOGO" Stretch="Uniform">
+        <DrawingBrush.Drawing>
+            <DrawingGroup>
+                <DrawingGroup.Children>
+                    <GeometryDrawing Brush="#FFFFFFFF" Geometry="F1 M 4.25781,0.500001C 6.33319,0.500001 8.01562,2.18243 8.01562,4.25781C 8.01562,6.3332 6.33319,8.01563 4.25781,8.01563C 2.18243,8.01563 0.5,6.3332 0.5,4.25781C 0.5,2.18243 2.18243,0.500001 4.25781,0.500001 Z ">
+                        <GeometryDrawing.Pen>
+                            <Pen LineJoin="Round" Brush="#FFFFFFFF"/>
+                        </GeometryDrawing.Pen>
+                    </GeometryDrawing>
+                </DrawingGroup.Children>
+            </DrawingGroup>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+</ResourceDictionary>
