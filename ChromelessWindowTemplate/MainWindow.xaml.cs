@@ -15,7 +15,6 @@ namespace ChromelessWindowTemplate
     public partial class MainWindow : Window
     {
         //参照http://blog.csdn.net/dlangu0393/article/details/12548731而成
-        static int customBorderThickness = 6;//需要写上边框阴影区大小以便最大化最小化后还原
         public MainWindow()
         {
             InitializeComponent();
@@ -27,6 +26,8 @@ namespace ChromelessWindowTemplate
             #endregion
         }
         #region 无边框窗口相关代码
+        static int customBorderThickness;
+
         void MainWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ClickCount == 2)
@@ -247,6 +248,7 @@ namespace ChromelessWindowTemplate
         {
             if (WindowState == WindowState.Maximized)
             {
+                customBorderThickness = int.Parse(windows_main.BorderThickness.Right.ToString());
                 this.BorderThickness = new System.Windows.Thickness(0);
             }
             else
