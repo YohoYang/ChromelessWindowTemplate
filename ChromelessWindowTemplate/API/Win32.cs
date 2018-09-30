@@ -65,6 +65,8 @@ namespace ChromelessWindowTemplate.API
         // Get the working area of the specified monitor  
         [DllImport("user32.dll")]
         public static extern bool GetMonitorInfo(HandleRef hmonitor, [In, Out] MONITORINFOEX monitorInfo);
+
+
         // Sent to a window in order to determine what part of the window corresponds to a particular screen coordinate  
         public const int WM_NCHITTEST = 0x0084;
 

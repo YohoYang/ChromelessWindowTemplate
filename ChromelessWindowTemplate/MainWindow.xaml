@@ -5,9 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ChromelessWindowTemplate"
         mc:Ignorable="d"
-        Title="MainWindow" BorderThickness="5" Margin="0" AllowsTransparency="True" WindowStyle="None" Height="570" Width="830">
+        Title="MainWindow" 
+        BorderThickness="5" 
+        Margin="0" 
+        AllowsTransparency="True" 
+        WindowStyle="None" 
+        Height="570" 
+        Width="830"
+        >
     <Window.Effect>
-        <DropShadowEffect Opacity="0.75" Color="#7F000000" ShadowDepth="1"/>
+        <DropShadowEffect Opacity="0.75" ShadowDepth="1" BlurRadius="6" Direction="270"/>
     </Window.Effect>
     <Grid>
         <Grid.ColumnDefinitions>

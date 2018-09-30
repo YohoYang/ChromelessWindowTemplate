@@ -15,7 +15,7 @@ namespace ChromelessWindowTemplate
     public partial class MainWindow : Window
     {
         //参照http://blog.csdn.net/dlangu0393/article/details/12548731而成
-        int customBorderThickness = 5;//需要写上边框阴影区大小以便最大化最小化后还原
+        static int customBorderThickness = 6;//需要写上边框阴影区大小以便最大化最小化后还原
         public MainWindow()
         {
             InitializeComponent();
@@ -73,14 +73,17 @@ namespace ChromelessWindowTemplate
             }
 
         }
+
         private void MinButton_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
         }
+
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
+
         void MainWindow_SourceInitialized(object sender, EventArgs e)
         {
             HwndSource source = HwndSource.FromHwnd(new WindowInteropHelper(this).Handle);
@@ -90,6 +93,7 @@ namespace ChromelessWindowTemplate
 
             source.AddHook(new HwndSourceHook(this.WndProc));
         }
+
         private IntPtr WndProc(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
         {
 
@@ -108,7 +112,7 @@ namespace ChromelessWindowTemplate
         /// <summary>  
         /// Corner width used in HitTest  
         /// </summary>  
-        private readonly int cornerWidth = 8;
+        private readonly int cornerWidth = customBorderThickness + 1;
 
         /// <summary>  
         /// Mouse point used by HitTest  
@@ -151,19 +155,19 @@ namespace ChromelessWindowTemplate
             { // Bottom-Right  
                 return new IntPtr((int)Win32.HitTest.HTBOTTOMRIGHT);
             }
-            else if (Math.Abs(this.mousePoint.X - this.Left) <= this.customBorderThickness)
+            else if (Math.Abs(this.mousePoint.X - this.Left) <= customBorderThickness)
             { // Left  
                 return new IntPtr((int)Win32.HitTest.HTLEFT);
             }
-            else if (Math.Abs(this.ActualWidth + this.Left - this.mousePoint.X) <= this.customBorderThickness)
+            else if (Math.Abs(this.ActualWidth + this.Left - this.mousePoint.X) <= customBorderThickness)
             { // Right  
                 return new IntPtr((int)Win32.HitTest.HTRIGHT);
             }
-            else if (Math.Abs(this.mousePoint.Y - this.Top) <= this.customBorderThickness)
+            else if (Math.Abs(this.mousePoint.Y - this.Top) <= customBorderThickness)
             { // Top  
                 return new IntPtr((int)Win32.HitTest.HTTOP);
             }
-            else if (Math.Abs(this.ActualHeight + this.Top - this.mousePoint.Y) <= this.customBorderThickness)
+            else if (Math.Abs(this.ActualHeight + this.Top - this.mousePoint.Y) <= customBorderThickness)
             { // Bottom  
                 return new IntPtr((int)Win32.HitTest.HTBOTTOM);
             }
@@ -197,21 +201,32 @@ namespace ChromelessWindowTemplate
                 throw new Exception("Cannot get HwndTarget instance.");
 
             // Get transformation matrix  
-            Matrix matrix = source.CompositionTarget.TransformFromDevice;
+
+            //取消了DPI相关转换
+            //Matrix matrix = source.CompositionTarget.TransformFromDevice;
 
             // Convert working area  
             Win32.RECT workingArea = monitorInfo.rcWork;
             Point dpiIndependentSize =
-                matrix.Transform(new Point(
+                new Point(//注释DPI转换相关
                         workingArea.Right - workingArea.Left,
                         workingArea.Bottom - workingArea.Top
-                        ));
+                        );
+            //Point dpiIndependentSize =
+            //    matrix.Transform(new Point(
+            //            workingArea.Right - workingArea.Left,
+            //            workingArea.Bottom - workingArea.Top
+            //            ));
 
             // Convert minimum size  
-            Point dpiIndenpendentTrackingSize = matrix.Transform(new Point(
+            Point dpiIndenpendentTrackingSize = new Point(//取消DPI相关转换
                 this.MinWidth,
                 this.MinHeight
-                ));
+                );
+            //Point dpiIndenpendentTrackingSize = matrix.Transform(new Point(
+            //    this.MinWidth,
+            //    this.MinHeight
+            //    ));
 
             // Set the maximized size of the window  
             mmi.ptMaxSize.x = (int)dpiIndependentSize.X;
@@ -227,6 +242,7 @@ namespace ChromelessWindowTemplate
 
             Marshal.StructureToPtr(mmi, lParam, true);
         }
+
         void MainWindow_StateChanged(object sender, EventArgs e)
         {
             if (WindowState == WindowState.Maximized)
