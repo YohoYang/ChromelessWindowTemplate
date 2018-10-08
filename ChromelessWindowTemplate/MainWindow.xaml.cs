@@ -87,6 +87,7 @@ namespace ChromelessWindowTemplate
 
         void MainWindow_SourceInitialized(object sender, EventArgs e)
         {
+            customBorderThickness = int.Parse(windows_main.BorderThickness.Right.ToString());
             HwndSource source = HwndSource.FromHwnd(new WindowInteropHelper(this).Handle);
             if (source == null)
                 // Should never be null  
